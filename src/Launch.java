@@ -5,14 +5,14 @@ public class Launch {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void Launch() {
-        ArrayList<Stock> stocks = new ArrayList<>();
-        Stock stock1 = new Stock();
-        Stock stock2 = new Stock();
-        Stock stock3 = new Stock();
+        ArrayList<Warehouse> warehouses = new ArrayList<>();
+        Warehouse warehouse1 = new Warehouse();
+        Warehouse warehouse2 = new Warehouse();
+        Warehouse warehouse3 = new Warehouse();
 
-        stocks.add(stock1);
-        stocks.add(stock2);
-        stocks.add(stock3);
+        warehouses.add(warehouse1);
+        warehouses.add(warehouse2);
+        warehouses.add(warehouse3);
 
         ArrayList<Product> products = new ArrayList<>();
         ArrayList<Product> productsInUse = new ArrayList<>();
@@ -28,9 +28,9 @@ public class Launch {
             mainMenuItem = scanner.nextInt();
 
             if (mainMenuItem == 1) {
-                workWithProducts(stocks, products, productsInUse);
+                workWithProducts(warehouses, products, productsInUse);
             } else if (mainMenuItem == 2) {
-                workWithStorages(stocks, products, productsInUse);
+                workWithStorages(warehouses, products, productsInUse);
             } else if (mainMenuItem == 0) {
                 System.out.println("-------------------------------------------------------------");
                 System.out.println("Выход из программы...");
@@ -42,7 +42,7 @@ public class Launch {
     }
 
 
-    private static void workWithProducts(ArrayList<Stock> stocks, ArrayList<Product> products, ArrayList<Product> productsInUse) {
+    private static void workWithProducts(ArrayList<Warehouse> warehouses, ArrayList<Product> products, ArrayList<Product> productsInUse) {
         while (true) {
             int mainMenuItem;
             System.out.println("-------------------------------------------------------------");
@@ -57,13 +57,13 @@ public class Launch {
             mainMenuItem = scanner.nextInt();
 
             if (mainMenuItem == 1) {
-                AddingGoodsToTheWarehouse(stocks, products, productsInUse);
+                AddingGoodsToTheWarehouse(warehouses, products, productsInUse);
             } else if (mainMenuItem == 2) {
-                AddingManyGoodsToTheWarehouse(stocks, products, productsInUse);
+                AddingManyGoodsToTheWarehouse(warehouses, products, productsInUse);
             } else if (mainMenuItem == 3) {
-                DeletingOneProduct(stocks, products, productsInUse);
+                DeletingOneProduct(warehouses, products, productsInUse);
             } else if (mainMenuItem == 4) {
-                DeletingManyProduct(stocks, products, productsInUse);
+                DeletingManyProduct(warehouses, products, productsInUse);
             } else if (mainMenuItem == 5) {
                 allProduct(products);
             } else if (mainMenuItem == 0) {
@@ -77,7 +77,7 @@ public class Launch {
     }
 
 
-    private static void workWithStorages(ArrayList<Stock> stocks, ArrayList<Product> products, ArrayList<Product> productsInUse) {
+    private static void workWithStorages(ArrayList<Warehouse> warehouses, ArrayList<Product> products, ArrayList<Product> productsInUse) {
         while (true) {
             int mainMenuItem;
             System.out.println("-------------------------------------------------------------");
@@ -90,11 +90,11 @@ public class Launch {
             mainMenuItem = scanner.nextInt();
 
             if (mainMenuItem == 1) {
-                AllStock(stocks, products);
+                AllStock(warehouses, products);
             } else if (mainMenuItem == 2) {
-                NewStock(stocks, products);
+                NewStock(warehouses, products);
             } else if (mainMenuItem == 3) {
-                deleteStock(stocks, products, productsInUse);
+                deleteStock(warehouses, products, productsInUse);
             } else if (mainMenuItem == 0) {
                 System.out.println("-------------------------------------------------------------");
                 System.out.println("Выход в предыдущее меню...");
@@ -106,7 +106,7 @@ public class Launch {
     }
 
 
-    private static void DeletingManyProduct(ArrayList<Stock> stocks, ArrayList<Product> products, ArrayList<Product> productsInUse) {
+    private static void DeletingManyProduct(ArrayList<Warehouse> warehouses, ArrayList<Product> products, ArrayList<Product> productsInUse) {
         int howManyProductForDelete;
         System.out.println("Введите количество продуктов для удоления");
         System.out.print("Ввод: ");
@@ -127,9 +127,9 @@ public class Launch {
                     for (Product product : products) {
                         if (product.getType().equals("Шампунь")) {
                             products.remove(product);
-                            for (Stock stock : stocks) {
-                                if (stock.getVolume() < 45) {
-                                    stock.setVolume(stock.getVolume() + product.getVolumeBox());
+                            for (Warehouse warehouse : warehouses) {
+                                if (warehouse.getVolume() < 45) {
+                                    warehouse.setVolume(warehouse.getVolume() + product.getVolumeBox());
                                     break;
                                 } else {
                                     continue;
@@ -148,9 +148,9 @@ public class Launch {
                     for (Product product : products) {
                         if (product.getType().equals("Мыло")) {
                             products.remove(product);
-                            for (Stock stock : stocks) {
-                                if (stock.getVolume() < 45) {
-                                    stock.setVolume(stock.getVolume() + product.getVolumeBox());
+                            for (Warehouse warehouse : warehouses) {
+                                if (warehouse.getVolume() < 45) {
+                                    warehouse.setVolume(warehouse.getVolume() + product.getVolumeBox());
                                     break;
                                 } else {
                                     continue;
@@ -169,9 +169,9 @@ public class Launch {
                     for (Product product : products) {
                         if (product.getType().equals("Напиток")) {
                             products.remove(product);
-                            for (Stock stock : stocks) {
-                                if (stock.getVolume() < 45) {
-                                    stock.setVolume(stock.getVolume() + product.getVolumeBox());
+                            for (Warehouse warehouse : warehouses) {
+                                if (warehouse.getVolume() < 45) {
+                                    warehouse.setVolume(warehouse.getVolume() + product.getVolumeBox());
                                     break;
                                 } else {
                                     continue;
@@ -191,11 +191,11 @@ public class Launch {
                 System.out.println("-------------------------------------------------------------");
             }
         }
-        AddNewProduct(stocks, products, productsInUse);
+        AddNewProduct(warehouses, products, productsInUse);
     }
 
 
-    private static void DeletingOneProduct(ArrayList<Stock> stocks, ArrayList<Product> products, ArrayList<Product> productsInUse) {
+    private static void DeletingOneProduct(ArrayList<Warehouse> warehouses, ArrayList<Product> products, ArrayList<Product> productsInUse) {
         while (true) {
             int mainMenuItem;
             System.out.println("-------------------------------------------------------------");
@@ -211,9 +211,9 @@ public class Launch {
                 for (Product product : products) {
                     if (product.getType().equals("Шампунь")) {
                         products.remove(product);
-                        for (Stock stock : stocks) {
-                            if (stock.getVolume() < 45) {
-                                stock.setVolume(stock.getVolume() + product.getVolumeBox());
+                        for (Warehouse warehouse : warehouses) {
+                            if (warehouse.getVolume() < 45) {
+                                warehouse.setVolume(warehouse.getVolume() + product.getVolumeBox());
                                 break;
                             } else {
                                 continue;
@@ -231,9 +231,9 @@ public class Launch {
                 for (Product product : products) {
                     if (product.getType().equals("Мыло")) {
                         products.remove(product);
-                        for (Stock stock : stocks) {
-                            if (stock.getVolume() < 45) {
-                                stock.setVolume(stock.getVolume() + product.getVolumeBox());
+                        for (Warehouse warehouse : warehouses) {
+                            if (warehouse.getVolume() < 45) {
+                                warehouse.setVolume(warehouse.getVolume() + product.getVolumeBox());
                                 break;
                             } else {
                                 continue;
@@ -251,9 +251,9 @@ public class Launch {
                 for (Product product : products) {
                     if (product.getType().equals("Напиток")) {
                         products.remove(product);
-                        for (Stock stock : stocks) {
-                            if (stock.getVolume() < 45) {
-                                stock.setVolume(stock.getVolume() + product.getVolumeBox());
+                        for (Warehouse warehouse : warehouses) {
+                            if (warehouse.getVolume() < 45) {
+                                warehouse.setVolume(warehouse.getVolume() + product.getVolumeBox());
                                 break;
                             } else {
                                 continue;
@@ -273,11 +273,11 @@ public class Launch {
                 System.out.println("-------------------------------------------------------------");
             }
         }
-        AddNewProduct(stocks, products, productsInUse);
+        AddNewProduct(warehouses, products, productsInUse);
     }
 
 
-    public static void AddingGoodsToTheWarehouse(ArrayList<Stock> stocks, ArrayList<Product> products, ArrayList<Product> productsInUse) {
+    public static void AddingGoodsToTheWarehouse(ArrayList<Warehouse> warehouses, ArrayList<Product> products, ArrayList<Product> productsInUse) {
         while (true) {
             int mainMenuItem;
             System.out.println("-------------------------------------------------------------");
@@ -333,11 +333,11 @@ public class Launch {
             }
             System.out.println("Ошибка. Введите цифру из меню!!!");
         }
-        AddNewProduct(stocks, products, productsInUse);
+        AddNewProduct(warehouses, products, productsInUse);
     }
 
 
-    public static void AddingManyGoodsToTheWarehouse(ArrayList<Stock> stocks, ArrayList<Product> products, ArrayList<Product> productsInUse) {
+    public static void AddingManyGoodsToTheWarehouse(ArrayList<Warehouse> warehouses, ArrayList<Product> products, ArrayList<Product> productsInUse) {
         while (true) {
             int mainMenuItem;
             System.out.println("-------------------------------------------------------------");
@@ -404,19 +404,19 @@ public class Launch {
             }
             System.out.println("Ошибка. Введите цифру из меню!!!");
         }
-        AddNewProduct(stocks, products, productsInUse);
+        AddNewProduct(warehouses, products, productsInUse);
     }
 
 
-    private static void AllStock(ArrayList<Stock> stocks, ArrayList<Product> products) {
+    private static void AllStock(ArrayList<Warehouse> warehouses, ArrayList<Product> products) {
         int count = 1;
         System.out.println("-------------------------------------------------------------");
         System.out.println("Информация о всех Складах:");
-        for (Stock stock : stocks) {
+        for (Warehouse warehouse : warehouses) {
             System.out.println("-------------------------------------------------------------");
-            System.out.println(stock.toString(count));
+            System.out.println(warehouse.toString(count));
             try {
-                stock.ProductMessage();
+                warehouse.ProductMessage();
             } catch (NullPointerException e) {
                 System.out.println("Склад пустой");
             }
@@ -425,35 +425,35 @@ public class Launch {
     }
 
 
-    private static void deleteStock(ArrayList<Stock> stocks, ArrayList<Product> products, ArrayList<Product> productsInUse) {
-        stocks.remove(0);
-        AddNewProduct(stocks, products, productsInUse);
+    private static void deleteStock(ArrayList<Warehouse> warehouses, ArrayList<Product> products, ArrayList<Product> productsInUse) {
+        warehouses.remove(0);
+        AddNewProduct(warehouses, products, productsInUse);
         System.out.println("-------------------------------------------------------------");
         System.out.println("Один склад был удалён");
     }
 
 
-    private static void NewStock(ArrayList<Stock> stocks, ArrayList<Product> products) {
-        Stock stock3 = new Stock();
-        stocks.add(stock3);
+    private static void NewStock(ArrayList<Warehouse> warehouses, ArrayList<Product> products) {
+        Warehouse warehouse3 = new Warehouse();
+        warehouses.add(warehouse3);
         System.out.println("-------------------------------------------------------------");
         System.out.println("Один склад был добавлен");
     }
 
 
-    public static void AddNewProduct(ArrayList<Stock> stocks, ArrayList<Product> products, ArrayList<Product> productsInUse) {
+    public static void AddNewProduct(ArrayList<Warehouse> warehouses, ArrayList<Product> products, ArrayList<Product> productsInUse) {
         ArrayList<Product> productsInStock = new ArrayList<>();
         for (Product p : products) {
-            for (Stock stock : stocks) {
-                if ((stock.getVolume() >= p.getVolumeBox()) && !productsInUse.contains(p)) {
-                    stock.setVolume(stock.getVolume() - p.getVolumeBox());
-                    stock.products1.add(p);
+            for (Warehouse warehouse : warehouses) {
+                if ((warehouse.getVolume() >= p.getVolumeBox()) && !productsInUse.contains(p)) {
+                    warehouse.setVolume(warehouse.getVolume() - p.getVolumeBox());
+                    warehouse.products1.add(p);
                     productsInStock.add(p);
                     productsInUse.add(p);
                 } else {
                     continue;
                 }
-                stock.setProducts(productsInStock);
+                warehouse.setProducts(productsInStock);
                 productsInStock = new ArrayList<>();
             }
         }

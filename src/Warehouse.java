@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Stock {
+public class Warehouse {
     private int volume = 50;
     private ArrayList<Product> products;
     ArrayList<Product> products1 = new ArrayList<>();
