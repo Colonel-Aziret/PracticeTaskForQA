@@ -48,4 +48,3 @@ public class Product {
         return getType() + " | " + getName() + " | " + getVolumeBox() + " | " + getVolumeProduct() + " | ";
     }
 }
-
